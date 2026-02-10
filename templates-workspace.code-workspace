@@ -5,8 +5,8 @@
       "path": "."
     },
     {
-      "name": "epic-stack",
-      "path": "epic-stack"
+      "name": "aidd-skills",
+      "path": "aidd-skills"
     },
     {
       "name": "personal-app-template-sqlite-fly-io",
@@ -17,12 +17,12 @@
       "path": "production-app-template-postgres-supabase"
     },
     {
-      "name": "react-router-saas-template",
-      "path": "react-router-saas-template"
+      "name": "epic-stack",
+      "path": "epic-stack"
     },
     {
-      "name": "aidd-skills",
-      "path": "aidd-skills"
+      "name": "react-router-saas-template",
+      "path": "react-router-saas-template"
     }
   ],
   "settings": {
