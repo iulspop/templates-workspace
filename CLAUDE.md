@@ -23,6 +23,13 @@ Install a single skill:
 npx skills add --yes --agent claude-code iulspop/aidd-skills/skills/<skill-name>
 ```
 
+After updating a skill in `aidd-skills/`, commit and push, then propagate to all three repos:
+```
+cd personal-app-template-sqlite-fly-io && npx skills add --agent claude-code --yes iulspop/aidd-skills && cd ..
+cd production-app-template-postgres-supabase && npx skills add --agent claude-code --yes iulspop/aidd-skills && cd ..
+cd react-router-saas-template && npx skills add --agent claude-code --yes iulspop/aidd-skills && cd ..
+```
+
 ### `react-router-saas-template`
 Reference only. The upstream SaaS template that the production template is based on. Do not use directly.
 
