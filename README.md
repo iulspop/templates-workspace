@@ -20,6 +20,7 @@ cd templates-workspace
 ### Shared Tooling
 
 - [aidd-skills](https://github.com/iulspop/aidd-skills) — Shared Claude Code skills (plan, commit, unit-tests, brainstorm, etc.) used across projects.
+- misc-skills — Collection of third-party agent skills from [remix-run/agent-skills](https://github.com/remix-run/agent-skills) and [sergiodxa/agent-skills](https://github.com/sergiodxa/agent-skills).
 
 ### Reference Only
 
