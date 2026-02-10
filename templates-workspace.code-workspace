@@ -1,0 +1,42 @@
+{
+  "folders": [
+    {
+      "name": "templates-workspace",
+      "path": "."
+    },
+    {
+      "name": "epic-stack",
+      "path": "epic-stack"
+    },
+    {
+      "name": "personal-app-template-sqlite-fly-io",
+      "path": "personal-app-template-sqlite-fly-io"
+    },
+    {
+      "name": "production-app-template-postgres-supabase",
+      "path": "production-app-template-postgres-supabase"
+    },
+    {
+      "name": "react-router-saas-template",
+      "path": "react-router-saas-template"
+    },
+    {
+      "name": "aidd-skills",
+      "path": "aidd-skills"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "epic-stack": true,
+      "personal-app-template-sqlite-fly-io": true,
+      "production-app-template-postgres-supabase": true,
+      "react-router-saas-template": true,
+      "aidd-skills": true
+    },
+    "playwright.configs": [
+      "personal-app-template-sqlite-fly-io/playwright.config.ts",
+      "production-app-template-postgres-supabase/playwright.config.ts",
+      "react-router-saas-template/playwright.config.ts"
+    ]
+  }
+}
