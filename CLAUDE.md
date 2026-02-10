@@ -15,19 +15,27 @@ Shared Claude Code skills (conventional-commit, unit-tests, documentation, brain
 
 Install all skills into a project:
 ```
-npx skills add --yes --agent claude-code iulspop/aidd-skills
+npx skills add iulspop/aidd-skills --yes --agent claude-code
 ```
 
 Install a single skill:
 ```
-npx skills add --yes --agent claude-code iulspop/aidd-skills/skills/<skill-name>
+npx skills add iulspop/aidd-skills/skills/<skill-name> --yes --agent claude-code
 ```
 
 After updating a skill in `aidd-skills/`, commit and push, then propagate to all three repos:
 ```
-cd personal-app-template-sqlite-fly-io && npx skills add --agent claude-code --yes iulspop/aidd-skills && cd ..
-cd production-app-template-postgres-supabase && npx skills add --agent claude-code --yes iulspop/aidd-skills && cd ..
-cd react-router-saas-template && npx skills add --agent claude-code --yes iulspop/aidd-skills && cd ..
+cd personal-app-template-sqlite-fly-io && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
+cd production-app-template-postgres-supabase && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
+cd react-router-saas-template && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
+```
+
+### `misc-skills`
+Third-party Claude Code skills from remix-run and sergiodxa (React Router, React, Tailwind, accessibility, i18n, async patterns, JS performance, OWASP security, etc.). Used as reference and installed alongside aidd-skills.
+
+Install all skills into a project:
+```
+npx skills add iulspop/misc-skills --yes --agent claude-code
 ```
 
 ### `react-router-saas-template`
@@ -157,36 +165,6 @@ TypeConstraints {
         organizationName: Organization['name'];
       }
   When using server/database return types: Awaited<ReturnType<typeof serverFunction>>, wrap with NonNullable<> if guaranteed to exist.
-}
-
-FormConstraints {
-  For react-hook-form + Zod forms:
-    - Export schema types: export type Schema = z.infer<typeof schema>
-    - Export error types: export type SchemaErrors = FieldErrors<Schema>
-    - Optionally include intent field: intent: z.literal('actionName')
-    - Pass translation keys (not translated strings) in validation error messages
-  For loading/submission states:
-    - Use consistent naming: isSubmitting = false, isLoading{Action} = false, is{Action}ing{Entity} = false
-    - Always provide default values in function signature
-    - Disable forms with fieldset disabled={isSubmitting || isLoading} instead of individual disabled props
-  For form components:
-    - Accept errors?: SchemaErrors (always optional)
-    - Accept children?: ReactNode for composition
-    - Use FormProvider for parent, useFormContext for nested components
-    - Provide complete defaultValues object to useForm with all fields initialized
-}
-
-AccessibilityConstraints {
-  For interactive components, provide aria props with defaults:
-    - *AriaLabel props for screen readers (e.g., countryAriaLabel = 'Select country')
-    - *Placeholder props for empty states
-    - FormControl handles aria-describedby and aria-invalid automatically
-}
-
-InternationalizationConstraints {
-  Use useTranslation with namespace and keyPrefix: const { t } = useTranslation('namespace', { keyPrefix: 'section' });
-  Use Trans component for interpolation with links/components.
-  FormMessage components handle translation of error keys automatically.
 }
 
 ## Hexagonal Feature-Slice Architecture
