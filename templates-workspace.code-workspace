@@ -9,6 +9,10 @@
       "path": "aidd-skills"
     },
     {
+      "name": "misc-skills",
+      "path": "misc-skills"
+    },
+    {
       "name": "personal-app-template-sqlite-fly-io",
       "path": "personal-app-template-sqlite-fly-io"
     },
@@ -31,7 +35,8 @@
       "personal-app-template-sqlite-fly-io": true,
       "production-app-template-postgres-supabase": true,
       "react-router-saas-template": true,
-      "aidd-skills": true
+      "aidd-skills": true,
+      "misc-skills": true
     },
     "playwright.configs": [
       "personal-app-template-sqlite-fly-io/playwright.config.ts",
