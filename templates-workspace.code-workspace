@@ -13,6 +13,10 @@
       "path": "misc-skills"
     },
     {
+      "name": "demo-app-template-sqlite",
+      "path": "demo-app-template-sqlite"
+    },
+    {
       "name": "personal-app-template-sqlite-fly-io-with-demo",
       "path": "personal-app-template-sqlite-fly-io-with-demo"
     },
@@ -31,12 +35,13 @@
   ],
   "settings": {
     "files.exclude": {
-      "epic-stack": true,
+      "aidd-skills": true,
+      "misc-skills": true,
+      "demo-app-template-sqlite": true,
       "personal-app-template-sqlite-fly-io-with-demo": true,
       "production-app-template-postgres-supabase-with-demo": true,
-      "react-router-saas-template": true,
-      "aidd-skills": true,
-      "misc-skills": true
+      "epic-stack": true,
+      "react-router-saas-template": true
     },
     "playwright.configs": [
       "personal-app-template-sqlite-fly-io-with-demo/playwright.config.ts",
