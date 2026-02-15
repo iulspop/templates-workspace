@@ -4,11 +4,11 @@ Multi-project workspace containing app templates, reference codebases, and share
 
 ## Directories
 
-### `personal-app-template-sqlite-fly-io`
-Starter template for simple apps: personal tools, demos, prototypes. SQLite database deployed to Fly.io. Single-node, low-ops. Use when you're the primary user or the app doesn't need high availability, multi-user concurrency, or managed database backups.
+### `personal-app-template-sqlite-fly-io-with-demo`
+Starter template for simple apps: personal tools, demos, prototypes. SQLite database deployed to Fly.io. Single-node, low-ops. Use when you're the primary user or the app doesn't need high availability, multi-user concurrency, or managed database backups. Includes a working demo app.
 
-### `production-app-template-postgres-supabase`
-Starter template for production apps that need reliability, data durability, and multi-user support (dozens to tens of thousands of users). Postgres via Supabase, with auth, org/team management, billing/Stripe, and CI/CD. Use for client projects or any app where uptime and data integrity matter.
+### `production-app-template-postgres-supabase-with-demo`
+Starter template for production apps that need reliability, data durability, and multi-user support (dozens to tens of thousands of users). Postgres via Supabase, with auth, org/team management, billing/Stripe, and CI/CD. Use for client projects or any app where uptime and data integrity matter. Includes a working demo app.
 
 ### `aidd-skills`
 Shared Claude Code skills (conventional-commit, unit-tests, documentation, brainstorm, etc.) used across projects.
@@ -25,8 +25,8 @@ npx skills add iulspop/aidd-skills/skills/<skill-name> --yes --agent claude-code
 
 After updating a skill in `aidd-skills/`, commit and push, then propagate to all three repos:
 ```
-cd personal-app-template-sqlite-fly-io && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
-cd production-app-template-postgres-supabase && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
+cd personal-app-template-sqlite-fly-io-with-demo && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
+cd production-app-template-postgres-supabase-with-demo && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
 cd react-router-saas-template && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
 ```
 
