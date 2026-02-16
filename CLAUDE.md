@@ -2,16 +2,26 @@
 
 Multi-project workspace containing app templates, reference codebases, and shared tooling.
 
-## Directories
+## Templates (copy to start a new project)
 
-### `personal-app-template-sqlite-fly-io-with-demo`
-Starter template for simple apps: personal tools, demos, prototypes. SQLite database deployed to Fly.io. Single-node, low-ops. Use when you're the primary user or the app doesn't need high availability, multi-user concurrency, or managed database backups. Includes a working demo app.
+### `personal-app-template`
+Starter template for simple apps: personal tools, demos, prototypes. SQLite database deployed to Fly.io. Single-node, low-ops. Use when you're the primary user or the app doesn't need high availability, multi-user concurrency, or managed database backups.
 
-### `production-app-template-postgres-supabase-with-demo`
-Starter template for production apps that need reliability, data durability, and multi-user support (dozens to tens of thousands of users). Postgres via Supabase, with auth, org/team management, billing/Stripe, and CI/CD. Use for client projects or any app where uptime and data integrity matter. Includes a working demo app.
+### `production-app-template`
+Starter template for production apps that need reliability, data durability, and multi-user support. Postgres on Fly.io with 2-machine canary deploy. Use for apps where uptime and data integrity matter.
 
 ### `demo-app-template`
-Demo app for designing UI, building a design system, and prototyping features in isolation. No auth, no deployment target. Used for Storybook-driven development with vanilla-extract tokens alongside Tailwind/shadcn.
+Template for designing UI, building a design system, and prototyping features in isolation. No auth, no deployment target. Storybook-driven development with vanilla-extract tokens alongside Tailwind/shadcn.
+
+## Reference (read-only, do not copy directly)
+
+### `personal-app-template-with-demo`
+Working demo built on the personal template. Reference for auth flows, feature architecture, and UI patterns with SQLite + Fly.io.
+
+### `production-app-template-with-demo`
+Working demo built on the production template. Reference for auth, org/team management, billing/Stripe, and CI/CD patterns with Postgres + Supabase.
+
+## Shared Tooling
 
 ### `aidd-skills`
 Shared Claude Code skills (conventional-commit, unit-tests, documentation, brainstorm, etc.) used across projects.
@@ -28,8 +38,8 @@ npx skills add iulspop/aidd-skills/skills/<skill-name> --yes --agent claude-code
 
 After updating a skill in `aidd-skills/`, commit and push, then propagate to all three repos:
 ```
-cd personal-app-template-sqlite-fly-io-with-demo && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
-cd production-app-template-postgres-supabase-with-demo && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
+cd personal-app-template-with-demo && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
+cd production-app-template-with-demo && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
 cd react-router-saas-template && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
 ```
 
@@ -42,10 +52,10 @@ npx skills add iulspop/misc-skills --yes --agent claude-code
 ```
 
 ### `react-router-saas-template`
-Reference only. The upstream SaaS template that the production template is based on. Do not use directly.
+The upstream SaaS template that the production template is based on. Do not use directly.
 
 ### `epic-stack`
-Reference only. Kent C. Dodds' Epic Stack, used as architectural reference. Do not use directly.
+Kent C. Dodds' Epic Stack, used as architectural reference. Do not use directly.
 
 ---
 

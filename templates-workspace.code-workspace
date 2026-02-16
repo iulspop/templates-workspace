@@ -25,12 +25,12 @@
       "path": "production-app-template"
     },
     {
-      "name": "personal-app-template-sqlite-fly-io-with-demo",
-      "path": "personal-app-template-sqlite-fly-io-with-demo"
+      "name": "personal-app-template-with-demo",
+      "path": "personal-app-template-with-demo"
     },
     {
-      "name": "production-app-template-postgres-supabase-with-demo",
-      "path": "production-app-template-postgres-supabase-with-demo"
+      "name": "production-app-template-with-demo",
+      "path": "production-app-template-with-demo"
     },
     {
       "name": "epic-stack",
@@ -47,15 +47,15 @@
       "misc-skills": true,
       "demo-app-template": true,
       "personal-app-template": true,
-      "personal-app-template-sqlite-fly-io-with-demo": true,
+      "personal-app-template-with-demo": true,
       "production-app-template": true,
-      "production-app-template-postgres-supabase-with-demo": true,
+      "production-app-template-with-demo": true,
       "epic-stack": true,
       "react-router-saas-template": true
     },
     "playwright.configs": [
-      "personal-app-template-sqlite-fly-io-with-demo/playwright.config.ts",
-      "production-app-template-postgres-supabase-with-demo/playwright.config.ts",
+      "personal-app-template-with-demo/playwright.config.ts",
+      "production-app-template-with-demo/playwright.config.ts",
       "react-router-saas-template/playwright.config.ts"
     ]
   }
