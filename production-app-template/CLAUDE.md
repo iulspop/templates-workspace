@@ -1,55 +1,16 @@
-# Templates Workspace
+# Project Instructions
 
-Multi-project workspace containing app templates, reference codebases, and shared tooling.
+## Skills
 
-## Directories
-
-### `personal-app-template-sqlite-fly-io-with-demo`
-Starter template for simple apps: personal tools, demos, prototypes. SQLite database deployed to Fly.io. Single-node, low-ops. Use when you're the primary user or the app doesn't need high availability, multi-user concurrency, or managed database backups. Includes a working demo app.
-
-### `production-app-template-postgres-supabase-with-demo`
-Starter template for production apps that need reliability, data durability, and multi-user support (dozens to tens of thousands of users). Postgres via Supabase, with auth, org/team management, billing/Stripe, and CI/CD. Use for client projects or any app where uptime and data integrity matter. Includes a working demo app.
-
-### `demo-app-template`
-Demo app for designing UI, building a design system, and prototyping features in isolation. No auth, no deployment target. Used for Storybook-driven development with vanilla-extract tokens alongside Tailwind/shadcn.
-
-### `aidd-skills`
-Shared Claude Code skills (conventional-commit, unit-tests, documentation, brainstorm, etc.) used across projects.
-
-Install all skills into a project:
+Install all shared skills:
 ```
-npx skills add iulspop/aidd-skills --yes --agent claude-code
+npx skills add --yes --agent claude-code iulspop/aidd-skills
 ```
 
 Install a single skill:
 ```
-npx skills add iulspop/aidd-skills/skills/<skill-name> --yes --agent claude-code
+npx skills add --yes --agent claude-code iulspop/aidd-skills/skills/<skill-name>
 ```
-
-After updating a skill in `aidd-skills/`, commit and push, then propagate to all three repos:
-```
-cd personal-app-template-sqlite-fly-io-with-demo && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
-cd production-app-template-postgres-supabase-with-demo && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
-cd react-router-saas-template && npx skills add iulspop/aidd-skills --yes --agent claude-code && cd ..
-```
-
-### `misc-skills`
-Third-party Claude Code skills from remix-run and sergiodxa (React Router, React, Tailwind, accessibility, i18n, async patterns, JS performance, OWASP security, etc.). Used as reference and installed alongside aidd-skills.
-
-Install all skills into a project:
-```
-npx skills add iulspop/misc-skills --yes --agent claude-code
-```
-
-### `react-router-saas-template`
-Reference only. The upstream SaaS template that the production template is based on. Do not use directly.
-
-### `epic-stack`
-Reference only. Kent C. Dodds' Epic Stack, used as architectural reference. Do not use directly.
-
----
-
-# Coding Guidelines
 
 Act as a top-tier software engineer with serious JavaScript/TypeScript discipline to carefully implement high quality software.
 
@@ -82,10 +43,6 @@ Develop **test-driven** (TDD): write a failing test first, then the minimal impl
 - Infrastructure facades: integration tests in `*.spec.ts` when needed.
 - Test names follow the pattern: `given: <precondition>, should: <expected behavior>`.
 - Use factories (`*-factories.server.ts`) to build test data — never hardcode full objects inline.
-- Use Vitest with describe, expect, and test.
-- Use cuid2 for IDs unless specified otherwise.
-- Capture `actual` and `expected` values in variables before asserting with `toEqual`.
-- Avoid `expect.any(Constructor)` in assertions. Expect specific values instead.
 
 ## JavaScript / TypeScript
 
@@ -148,7 +105,6 @@ Comments {
 ReactConstraints {
   Be concise.
   You're using React Router V7 (the successor to Remix).
-  Use ShadCN/ui for components. If a component is missing, install it.
   Modularize by feature; one concern per file or component; prefer named exports.
   This project uses TailwindCSS V4, so you can use things like container queries and child selectors.
 }
@@ -163,11 +119,15 @@ TypeConstraints {
   Use proper React TypeScript types: MouseEventHandler<HTMLButtonElement>, ChangeEventHandler<HTMLInputElement>, ReactNode, React.Ref<T>, ComponentProps<'element'>, etc. Never use generic () => void or (event: any) => void.
   When extending HTML elements or existing components, use ComponentProps to inherit their props: ComponentProps<'input'>, ComponentProps<'button'>, ComponentProps<typeof ExistingComponent>.
   This project uses Prisma. If a prop comes from a database entity, use the entities type for it, e.g.:
-    - type UserMenuProps = Pick<UserAccount, 'id' | 'name' | 'email'> & {
+    - type UserMenuProps = Pick<User, 'id' | 'name' | 'email'> & {
         onLogout: MouseEventHandler<HTMLInputElement>;
-        organizationName: Organization['name'];
       }
   When using server/database return types: Awaited<ReturnType<typeof serverFunction>>, wrap with NonNullable<> if guaranteed to exist.
+}
+
+InternationalizationConstraints {
+  Use useTranslation with namespace and keyPrefix: const { t } = useTranslation('namespace', { keyPrefix: 'section' });
+  Use Trans component for interpolation with links/components.
 }
 
 ## Hexagonal Feature-Slice Architecture
@@ -210,24 +170,25 @@ KeyPatterns {
   One generic `Result<T, E>` replaces per-operation result types.
   SDA function params replace Command objects.
   `ts-pattern` exhaustive matching in action handlers.
+  TODO: add a complete reference implementation in `app/features/`.
 }
 
 ## Facade Functions
 
 FacadeConstraints {
-  Apply only to functions in `*-model.server.ts` files.
-  Function names must follow `<action><Entity><OptionalWith...><DataSource><OptionalBy...>()` pattern.
-  Allowed actions: save | retrieve | update | delete.
-  Entity names are singular, in PascalCase.
-  Use "With..." to indicate included relations before "From/In/ToDatabase".
-  Use "By..." to indicate lookup key(s) last; key names must match schema fields exactly.
-  Use "And" to chain multiple included relations or keys.
-  Use "ToDatabase" for create, "FromDatabase" for reads, "InDatabase" for updates, "FromDatabase" for deletes.
-  Facades must perform a single database operation (no business logic).
-  Facades must always return raw Prisma results (no transformations).
-  Include JSDoc with description, @param, and @returns tags matching the function name and purpose.
-  Prefer explicit Prisma includes/selects; avoid `include: { *: true }`.
-  Function bodies must use the `prisma.<entity>.<operation>` pattern directly.
+  - Apply only to functions in `*-model.server.ts` files.
+  - Function names must follow `<action><Entity><OptionalWith...><DataSource><OptionalBy...>()` pattern.
+  - Allowed actions: save | retrieve | update | delete.
+  - Entity names are singular, in PascalCase.
+  - Use "With..." to indicate included relations before "From/In/ToDatabase".
+  - Use "By..." to indicate lookup key(s) last; key names must match schema fields exactly.
+  - Use "And" to chain multiple included relations or keys.
+  - Use "ToDatabase" for create, "FromDatabase" for reads, "InDatabase" for updates, "FromDatabase" for deletes.
+  - Facades must perform a single database operation (no business logic).
+  - Facades must always return raw Prisma results (no transformations).
+  - Include JSDoc with description, @param, and @returns tags matching the function name and purpose.
+  - Prefer explicit Prisma includes/selects; avoid `include: { *: true }`.
+  - Function bodies must use the `prisma.<entity>.<operation>` pattern directly.
 }
 
 ## shadcn / Base UI Components
