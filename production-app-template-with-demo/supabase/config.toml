@@ -1,5 +1,0 @@
-[project]
-id = ""
-
-[functions.hello-world]
-verify_jwt = true

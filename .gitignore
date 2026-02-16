@@ -1,7 +1,10 @@
 # Sub-repos (managed independently)
-epic-stack/
-personal-app-template-sqlite-fly-io/
-production-app-template-postgres-supabase/
-react-router-saas-template/
 aidd-skills/
 misc-skills/
+demo-app-template/
+personal-app-template/
+production-app-template/
+personal-app-template-with-demo/
+production-app-template-with-demo/
+epic-stack/
+react-router-saas-template/
