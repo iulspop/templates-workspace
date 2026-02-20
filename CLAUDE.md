@@ -63,39 +63,36 @@ Kent C. Dodds' Epic Stack, used as architectural reference. Do not use directly.
 
 Act as a top-tier software engineer with serious JavaScript/TypeScript discipline to carefully implement high quality software.
 
-## Before Writing Code
+CodingGuidelines {
+  BeforeWritingCode {
+    Read the lint and formatting rules.
+    Observe the project's relevant existing code.
+    Conform to existing code style, patterns, and conventions unless directed otherwise. Note: these instructions count as "directed otherwise" unless the user explicitly overrides them.
+  }
 
-- Read the lint and formatting rules.
-- Observe the project's relevant existing code.
-- Conform to existing code style, patterns, and conventions unless directed otherwise. Note: these instructions count as "directed otherwise" unless the user explicitly overrides them.
+  Principles {
+    DOT, YAGNI, KISS, DRY, TDD.
+    SDA - Self Describing APIs.
+    Simplicity - "Simplicity is removing the obvious, and adding the meaningful."
+      Obvious stuff gets hidden in the abstraction.
+      Meaningful stuff is what needs to be customized and passed in as parameters.
+      Functions should have default parameters whenever it makes sense so that callers can supply only what is different from the default.
+  }
 
-## Principles
-
-- DOT
-- YAGNI
-- KISS
-- DRY
-- TDD
-- SDA - Self Describing APIs
-- Simplicity - "Simplicity is removing the obvious, and adding the meaningful."
-  - Obvious stuff gets hidden in the abstraction.
-  - Meaningful stuff is what needs to be customized and passed in as parameters.
-  - Functions should have default parameters whenever it makes sense so that callers can supply only what is different from the default.
-
-## Testing
-
-Develop **test-driven** (TDD): write a failing test first, then the minimal implementation to pass it, then refactor.
-
-- Every new function, component, or behavior must have tests.
-- Domain pure functions: unit tests in `*-domain.test.ts` (colocated in `domain/`).
-- UI components: render tests in `*.test.tsx` (colocated in `application/`).
-- Infrastructure facades: integration tests in `*.spec.ts` when needed.
-- Test names follow the pattern: `given: <precondition>, should: <expected behavior>`.
-- Use factories (`*-factories.server.ts`) to build test data — never hardcode full objects inline.
-- Use Vitest with describe, expect, and test.
-- Use cuid2 for IDs unless specified otherwise.
-- Capture `actual` and `expected` values in variables before asserting with `toEqual`.
-- Avoid `expect.any(Constructor)` in assertions. Expect specific values instead.
+  Testing {
+    Develop **test-driven** (TDD): write a failing test first, then the minimal implementation to pass it, then refactor.
+    Every new function, component, or behavior must have tests.
+    Domain pure functions: unit tests in `*-domain.test.ts` (colocated in `domain/`).
+    UI components: render tests in `*.test.tsx` (colocated in `application/`).
+    Infrastructure facades: integration tests in `*.spec.ts` when needed.
+    Test names follow the pattern: `given: <precondition>, should: <expected behavior>`.
+    Use factories (`*-factories.server.ts`) to build test data — never hardcode full objects inline.
+    Use Vitest with describe, expect, and test.
+    Use cuid2 for IDs unless specified otherwise.
+    Capture `actual` and `expected` values in variables before asserting with `toEqual`.
+    Avoid `expect.any(Constructor)` in assertions. Expect specific values instead.
+  }
+}
 
 ## JavaScript / TypeScript
 
@@ -151,9 +148,7 @@ Comments {
 
 ## React
 
-- Display/container component pattern
-  - Split your component into display components, which are pure functions that map props to JSX, and container components, which are (optional) stateful components that wrap one display component.
-  - Then compose them together in the parent or page/route component.
+Display/container component pattern: split your component into display components (pure functions mapping props to JSX) and container components (optional stateful wrappers). Compose them together in the parent or page/route component.
 
 ReactConstraints {
   Be concise.
@@ -163,7 +158,7 @@ ReactConstraints {
   This project uses TailwindCSS V4, so you can use things like container queries and child selectors.
 }
 
-NamingConstraints {
+ReactNaming {
   Use clear, descriptive, consistent naming.
   Components should be postfixed with `Component`.
   Props should be the component's name, postfixed with `ComponentProps`.
@@ -242,11 +237,13 @@ FacadeConstraints {
 
 ## shadcn / Base UI Components
 
-- Config: `components.json` (style `base-vega`, icon library `@tabler/icons-react`)
-- Components live in `app/components/ui/`, copied from shadcn (not installed via CLI package)
-- Use `cn()` from `~/lib/utils` for conditional class merging
-- Use semantic color tokens (`text-foreground`, `text-muted-foreground`, `bg-primary`, `border-border`, etc.) instead of hardcoded Tailwind colors (`text-gray-900`, `bg-blue-600`, etc.)
-- Use `Button`, `Input`, `Textarea`, `FieldError` instead of raw HTML `<button>`, `<input>`, `<textarea>`, `<p role="alert">`
-- Hidden form inputs (`type="hidden"`) stay as plain `<input>` elements
-- Use Tabler icons (`@tabler/icons-react`) instead of inline SVGs
-- Dark mode via `className="system"` on `<html>` + `@custom-variant dark` in CSS (OS `prefers-color-scheme`)
+ShadcnConstraints {
+  Config: `components.json` (style `base-vega`, icon library `@tabler/icons-react`).
+  Components live in `app/components/ui/`, copied from shadcn (not installed via CLI package).
+  Use `cn()` from `~/lib/utils` for conditional class merging.
+  Use semantic color tokens (`text-foreground`, `text-muted-foreground`, `bg-primary`, `border-border`, etc.) instead of hardcoded Tailwind colors (`text-gray-900`, `bg-blue-600`, etc.).
+  Use `Button`, `Input`, `Textarea`, `FieldError` instead of raw HTML `<button>`, `<input>`, `<textarea>`, `<p role="alert">`.
+  Hidden form inputs (`type="hidden"`) stay as plain `<input>` elements.
+  Use Tabler icons (`@tabler/icons-react`) instead of inline SVGs.
+  Dark mode via `className="system"` on `<html>` + `@custom-variant dark` in CSS (OS `prefers-color-scheme`).
+}
